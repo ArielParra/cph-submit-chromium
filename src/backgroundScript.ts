@@ -29,7 +29,6 @@ const mainLoop = async () => {
 
   if (response.empty) {
     log("Got empty valid response from CPH");
-
     return;
   }
 
