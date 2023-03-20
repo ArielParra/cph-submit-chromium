@@ -2,16 +2,18 @@ import config from "./config";
 import log from "./log";
 
 export const isContestProblem = (problemUrl: string) => {
-  return problemUrl.indexOf("contest") != -1;
+  return problemUrl.indexOf("contest") != -1 || problemUrl.indexOf("gym") != -1;
 };
 
 export const getSubmitUrl = (problemUrl: string) => {
   if (!isContestProblem(problemUrl)) {
     return config.cfSubmitPage.href;
   }
+
+  const contestType = problemUrl.indexOf("contest") != -1 ? "contest" : "gym";
   const url = new URL(problemUrl);
   const contestNumber = url.pathname.split("/")[2];
-  const submitURL = `https://codeforces.com/contest/${contestNumber}/submit`;
+  const submitURL = `https://codeforces.com/${contestType}/${contestNumber}/submit`;
   return submitURL;
 };
 
@@ -24,59 +26,51 @@ export const handleSubmit = async (problemName: string, languageId: number, sour
 
   log("isContestProblem", isContestProblem(problemUrl));
 
-  chrome.tabs.create({
-    active: true,
-    url: getSubmitUrl(problemUrl),
-  }, (tab: any) => {
-        chrome.windows.update(tab.windowId, {
-          focused: true,
-        });
+  chrome.tabs.create(
+    {
+      active: true,
+      url: getSubmitUrl(problemUrl),
+    },
+    (tab: any) => {
+      chrome.windows.update(tab.windowId, {
+        focused: true,
+      });
 
-        if (tab.id == undefined) {
-          log("No tab id to send message to", tab);
-          return;
-        }
+      if (tab.id == undefined) {
+        log("No tab id to send message to", tab);
+        return;
+      }
 
-        chrome.tabs.executeScript(tab.id, {
+      chrome.tabs.executeScript(
+        tab.id,
+        {
           file: "/dist/injectedScript.js",
-        }, () => {
-                chrome.tabs.sendMessage(tab.id, {
-                  type: "cph-submit",
-                  problemName,
-                  languageId,
-                  sourceCode,
-                  url: problemUrl,
-                });
-                log("Sending message to tab with script");
-        });
+        },
+        () => {
+          chrome.tabs.sendMessage(tab.id, {
+            type: "cph-submit",
+            problemName,
+            languageId,
+            sourceCode,
+            url: problemUrl,
+          });
+          log("Sending message to tab with script");
+        }
+      );
 
+      const filter = {
+        url: [{ urlContains: "codeforces.com/problemset/status" }],
+      };
 
+      log("Adding nav listener");
 
-        const filter = {
-          url: [{ urlContains: "codeforces.com/problemset/status" }],
-        };
+      chrome.webNavigation.onCommitted.addListener((args) => {
+        log("Navigation about to happen");
 
-        log("Adding nav listener");
-
-        chrome.webNavigation.onCommitted.addListener((args) => {
-          log("Navigation about to happen");
-
-          if (args.tabId === tab.id) {
-            log("Our tab is navigating");
-
-            // const url = new URL(args.url);
-            // const searchParams = new URLSearchParams(url.search);
-
-            // if (searchParams.has("friends")) {
-            //   return;
-            // }
-
-            // log("Navigating to friends mode");
-
-            // chrome.tabs.update(args.tabId, { url: args.url + "?friends=on" });
-          }
-        }, filter);
-  });
-
-
+        if (args.tabId === tab.id) {
+          log("Our tab is navigating");
+        }
+      }, filter);
+    }
+  );
 };

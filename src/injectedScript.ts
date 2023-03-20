@@ -4,7 +4,7 @@ import log from "./log";
 log("cph-submit script injected");
 
 const isContestProblem = (problemUrl: string) => {
-  return problemUrl.indexOf("contest") != -1;
+  return problemUrl.indexOf("contest") != -1 || problemUrl.indexOf("gym") != -1;
 };
 
 const handleData = (data: ContentScriptData) => {
