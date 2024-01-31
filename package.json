@@ -1,9 +1,9 @@
 {
   "name": "cph-submit",
-  "version": "1.0.0",
+  "version": "1.4.1",
   "description": "",
   "main": "out/extension.js",
-  "author": "Divyanshu Agrawal, Abdallah Maher",
+  "author": "Divyanshu Agrawal, Abdallah Maher, ",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "^0.0.224",
