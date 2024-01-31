@@ -17,7 +17,7 @@ Now it has become compatible with chromium based browsers with the extension man
 ## Installation For Chromium based browsers
 
 ### Loading the CRX release
-1. Download the CRX from this repository realeses
+1. Download the CRX from this repository [releases](https://github.com/ArielParra/cph-submit-chromium/releases)
 1. Activate developer mode in extensions tab
 1. Drag and drop the CRX file into the extensions window
 
