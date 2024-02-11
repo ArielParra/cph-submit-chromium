@@ -16,10 +16,19 @@
     "https://codeforces.com/*"
   ],
   "permissions": [
-    "webNavigation"
+    "webNavigation",
+    "activeTab"
   ],
   "icons": {
     "48": "icon-48.png"
+  },
+  "content_scripts": [
+  {
+    "matches": ["<all_urls>"],
+    "js": ["dist/injectedScript.js"],
+    "run_at": "document_end"
   }
+  ]
+
 }
 
