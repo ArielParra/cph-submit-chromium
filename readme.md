@@ -3,12 +3,11 @@
 </h1>
 
 Forked from Javtor that forked from abdallamaher that forked from the original agrawal-d's cph-submit.
+The reason for this fork is to [migrate](https://developer.chrome.com/docs/extensions/develop/migrate) the extension from manifest v2 to v3 and releasing the CRX file.
 
 Originally a firefox add on that enables Codeforces submit with [Competitive Programming Helper](https://github.com/agrawal-d/cph).
 
-Im trying to make it compatible with chromium based browsers with the extension manifest v3.
 
-The extension with v3 manifest doesn't flag any errors at installing but when uploading code from vscode it loads the submit website and then the extension has this error: "Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist."
 
 
 ## Installation For FireFox based browsers
