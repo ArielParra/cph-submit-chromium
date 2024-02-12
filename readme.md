@@ -6,7 +6,10 @@ Forked from Javtor that forked from abdallamaher that forked from the original a
 
 Originally a firefox add on that enables Codeforces submit with [Competitive Programming Helper](https://github.com/agrawal-d/cph).
 
-Now it has become compatible with chromium based browsers with the extension manifest v3.
+Im trying to make it compatible with chromium based browsers with the extension manifest v3.
+
+The extension with v3 manifest doesn't flag any errors at installing but when uploading code from vscode it loads the submit website and then the extension has this error: "Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist."
+
 
 ## Installation For FireFox based browsers
 
@@ -17,6 +20,7 @@ Now it has become compatible with chromium based browsers with the extension man
 ## Installation For Chromium based browsers
 
 ### Loading the CRX release
+
 1. Download the CRX from this repository [releases](https://github.com/ArielParra/cph-submit-chromium/releases)
 1. Activate developer mode in extensions tab
 1. Drag and drop the CRX file into the extensions window

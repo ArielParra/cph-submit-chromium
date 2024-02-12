@@ -5,7 +5,8 @@
   "version": "1.4.1",
   "description": "Codeforces Submit add-on for Competitive Programming Helper for Chromium browsers.",
   "background": {
-    "service_worker": "dist/backgroundScript.js"
+    "service_worker": "dist/backgroundScript.js",
+    "type": "module"
   },
   "host_permissions": [
     "http://localhost/*",
@@ -13,11 +14,12 @@
     "http://127.0.0.1/*",
     "https://127.0.0.1/*",
     "http://codeforces.com/*",
-    "https://codeforces.com/*"
+    "https://codeforces.com/*"  
   ],
   "permissions": [
     "webNavigation",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "icons": {
     "48": "icon-48.png"
@@ -29,6 +31,4 @@
     "run_at": "document_end"
   }
   ]
-
-}
-
+} 

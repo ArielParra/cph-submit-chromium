@@ -36,4 +36,14 @@ const mainLoop = async () => {
   handleSubmit(response.problemName, response.languageId, response.sourceCode, response.url);
 };
 
-setInterval(mainLoop, config.loopTimeOut);
+chrome.runtime.onInstalled.addListener(() => {
+  mainLoop(); // Execute the main loop when the extension is installed
+  setInterval(mainLoop, config.loopTimeOut);
+  console.log("Extension installed");
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "cph-submit") {
+    console.log("Received cph-submit message:", message, ", sender:", sender, ", sendResponse:", sendResponse);
+  }
+});
