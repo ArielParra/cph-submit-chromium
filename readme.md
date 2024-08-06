@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> agrawal-d updated the official [cph-submit](https://github.com/agrawal-d/cph-submit) and added chromium support, this repo will now be archived.
+
 <h1 id="cph-submit-chromium">
     <img src=icon-48.png alt="ICON"> cph-submit-chromium
 </h1>
@@ -5,7 +8,7 @@
 Forked from Javtor that forked from abdallamaher that forked from the original agrawal-d's cph-submit.
 The reason for this fork is to [migrate](https://developer.chrome.com/docs/extensions/develop/migrate) the extension from manifest v2 to v3 and releasing the CRX file.
 
-Originally a firefox add on that enables Codeforces submit with [Competitive Programming Helper](https://github.com/agrawal-d/cph).
+Originally a firefox add on that enables Codeforces submit with [Competitive Programming Helper](https://github.com/agrawal-d/cph-submit).
 
 
 
